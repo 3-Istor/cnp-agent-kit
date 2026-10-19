@@ -1,0 +1,7 @@
+{
+  "name": "cnp",
+  "version": "0.1.0",
+  "description": "Create, change and release apps on CNP: MCP connection to the platform and its guides.",
+  "skills": "./skills",
+  "mcp": "./mcp.json"
+}

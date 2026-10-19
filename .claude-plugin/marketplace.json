@@ -1,0 +1,14 @@
+{
+  "name": "cnp-agent-kit",
+  "owner": { "name": "3-Istor" },
+  "metadata": {
+    "description": "Use the CNP platform from your coding agent: create, change and release apps with the platform's own guides."
+  },
+  "plugins": [
+    {
+      "name": "cnp",
+      "source": "./plugins/cnp",
+      "description": "CNP MCP connection, platform guides (skills) and commands."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cnp": {
+      "type": "http",
+      "url": "https://cmp.3istor.com/mcp"
+    }
+  }
+}

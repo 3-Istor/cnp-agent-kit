@@ -1,0 +1,9 @@
+{
+  "name": "cnp",
+  "version": "0.1.0",
+  "description": "Create, change and release apps on CNP from Claude Code: MCP connection to the platform, its guides and commands.",
+  "author": { "name": "3-Istor" },
+  "homepage": "https://cmp.3istor.com/connect-ai",
+  "repository": "https://github.com/3-Istor/cnp-agent-kit",
+  "keywords": ["cnp", "platform", "kubernetes", "gitops", "mcp"]
+}
