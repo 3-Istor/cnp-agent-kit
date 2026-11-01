@@ -9,8 +9,8 @@ description: Change an existing CNP app (content, feature, fix) and publish the 
    when two apps could match. `get_app` gives its stack, URL and whether a
    rollout is in progress. Do not start a change while one is.
 2. **Read before writing.** `list_app_files`, then `read_app_file` on every
-   file you will touch and on `ai-context.md`. Follow what is there; do not
-   restructure what you were not asked to.
+   file you will touch and on `AGENTS.md` (older apps: `ai-context.md`).
+   Follow what is there; do not restructure what you were not asked to.
 3. **Change little, in one commit.** `push_files` with the full new content
    of each changed file. Message in the imperative, saying the why when it is
    not obvious. If the answer is a pull request (critical project, or CI and
