@@ -9,7 +9,8 @@ frontend/src/           React (Vite): App.jsx, main.jsx
 frontend/nginx.conf.template, frontend/Dockerfile
 deploy/values-backend.yaml, deploy/values-frontend.yaml
 .github/workflows/ci.yml
-ai-context.md           the template's own rules for assistants: read it
+AGENTS.md               the app's rules for assistants (CLAUDE.md imports it): read it
+.claude/skills/using-cnp-services/  how the app uses the database, secrets, SSO, releases
 ```
 
 - Backend layers: routers stay thin, logic in services, Pydantic schemas in

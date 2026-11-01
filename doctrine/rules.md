@@ -57,7 +57,7 @@ Why: the cluster is shared and tight on memory; FinOps reads them.
 Check: chart defaults, FinOps recommendations.
 
 ### CNP-11 · AGENTS.md
-**SHOULD** keep an `ai-context.md` (or `AGENTS.md`) at the root, with the
+**SHOULD** keep an `AGENTS.md` (older apps: `ai-context.md`) at the root, with the
 app's own conventions.
 Why: assistants read it before changing the app.
 Check: template.
