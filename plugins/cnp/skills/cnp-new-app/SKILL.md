@@ -39,7 +39,11 @@ an owner.
    [reference/static.md](reference/static.md) or
    [reference/fullstack.md](reference/fullstack.md). Keep the template's
    Dockerfile, CI and `deploy/` as they are.
-3. `push_files` with every file of the change in one commit, a clear message.
+3. Fullstack: fill the three lines at the top of `AGENTS.md` in the same
+   commit: what the app does, the ticket tracker (tool, project key, URL)
+   and where its docs live. Ask a developer for the last two in the same
+   exchange as step 1; write `none yet` when there is none.
+4. `push_files` with every file of the change in one commit, a clear message.
 
 ## 4. Put it online
 
