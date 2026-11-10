@@ -20,7 +20,10 @@ Read first, change after, and say what you found before fixing.
    written in them.
 4. **Recent changes.** `list_releases`: did it start with a release? Read
    the commits of that version with `read_app_file` on the changed files.
-5. **Report.** Cause in one sentence, the evidence (a log line, a measured
+5. **Alerts and costs.** `list_alerts` says what watches the app;
+   `get_costs` shows a cost jump (a loop, a resize). A pod stuck after a fix
+   in config: `app_power(action="restart")` once the user agrees.
+6. **Report.** Cause in one sentence, the evidence (a log line, a measured
    value), the fix you propose and its risk. Apply it only after the user
    agrees, through `cnp-change-app`.
 
@@ -31,5 +34,5 @@ Common causes on CNP:
 | Smoke check fails | the health path does not answer 2xx on the new version |
 | Migration step fails | a migration that is not backward compatible, or that locks a big table |
 | 502 / 503 after release | the app listens on another port than the one in `deploy/` |
-| App asleep at night | off-hours sleep is on for the project: normal |
+| App asleep at night | off-hours sleep is on for the project: normal; `app_power(action="wake")` if needed now |
 | Works for some users only | canary in progress: users are pinned to their version |

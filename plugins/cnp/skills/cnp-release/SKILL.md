@@ -39,8 +39,33 @@ when something changes. `list_releases` gives the history.
 - `abort`: stop and send traffic back to stable. Prefer it to waiting when
   errors rise.
 
+A canary on an app with no real users stays inconclusive: `release_traffic`
+sends test requests (up to 20 per second for 15 minutes) so the checks have
+something to measure. Stop it with `action="stop"`.
+
+How the app is released (strategy, error rate threshold, smoke path):
+read `get_release`, then `update_release_settings` with only the fields to
+change. Refused while a canary runs.
+
 The stake policy may answer `needs_user_confirmation` or `needs_cmp_approval`;
 see `cnp-platform`.
+
+## Staging and promotion
+
+An app with a staging environment gets release candidates `vX.Y.Z-rc.N`, which
+run in staging first. `get_environments` shows both versions, the promotion
+policy (test suites, soak time, approval) and past promotions.
+
+- `promotion(action="start")` promotes what runs in staging to prod. With
+  `emergency=true` it skips the soak time and needs a reason; use it only
+  when the user asks. `rollback_to` promotes an earlier revision.
+- A step waiting for a decision: `promotion(action="accept_step")`. A
+  promotion that needs an approval is approved by a person in the CMP.
+- `promotion(action="cancel")` stops one in progress.
+- `ci_run` runs a suite of the policy on an environment; `staging` adds,
+  removes, wakes or schedules the staging environment. Hours are cron
+  expressions in the staging's timezone, e.g. `0 19 * * 1-5` to sleep at
+  19:00 on weekdays; what you do not give is kept.
 
 ## Database migrations
 
