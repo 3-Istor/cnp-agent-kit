@@ -29,7 +29,7 @@ a person applied the plan. You prepare; the user decides and applies.
    They review the plan on that page and apply it themselves with their
    passkey. Calling `import_repo` again with `confirmation_id` tells you
    whether they did (`draft_used`). The draft is tied to that `run_id`: if
-   the repository is analysed again before they apply, the CMP refuses the
+   the repository is analyzed again before they apply, the CMP refuses the
    old review and the draft is not applied. Propose again with the new
    `run_id`.
 6. Follow the build with `get_import` (no `run_id`: the last run of each
