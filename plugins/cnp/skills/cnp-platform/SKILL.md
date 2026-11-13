@@ -32,6 +32,7 @@ with the `cnp` MCP tools. You act with the signed-in user's rights, never more.
 | Change an existing app (content, feature, fix) | `cnp-change-app` |
 | Release, follow or stop a rollout | `cnp-release` |
 | Something is broken or slow | `cnp-troubleshoot` |
+| Import an existing repository, link apps, read the project map | `cnp-import` |
 
 ## Rules (always)
 

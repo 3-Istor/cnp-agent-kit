@@ -22,11 +22,17 @@ one project. This page explains them.
 | Abort a rollout | allow | allow | allow | ask |
 | Change release settings | allow | allow | ask | confirm |
 | Delete an app | ask | ask | CMP only | CMP only |
+| Analyze a repository to import | allow | allow | allow | ask |
+| Apply an import plan | CMP only | CMP only | CMP only | CMP only |
+| Link or unlink two apps | confirm | confirm | confirm | confirm |
 
 - **ask**: the tool answers `needs_user_confirmation`. Ask the user.
 - **confirm**: the tool answers `needs_cmp_approval` with a link. A person
   approves in the CMP, then you call again with `confirmation_id`.
 - **pull request**: `push_files` opens one; a person reviews and merges.
+- **CMP only** for an import plan: `import_repo` leaves a draft and a link;
+  the user reviews and applies it on that page with their passkey. Nobody
+  approves it for you, and calling again never applies it.
 - While an alert fires on the app, abort and retry are always allowed.
 - An owner can open an "autonomous window" (1 to 8 h) on a standard project:
   it then behaves like demo.
