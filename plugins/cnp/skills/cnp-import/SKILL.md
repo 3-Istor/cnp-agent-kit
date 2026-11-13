@@ -28,7 +28,10 @@ a person applied the plan. You prepare; the user decides and applies.
    deploys. It answers `needs_cmp_approval` with a link: give it to the user.
    They review the plan on that page and apply it themselves with their
    passkey. Calling `import_repo` again with `confirmation_id` tells you
-   whether they did (`draft_used`).
+   whether they did (`draft_used`). The draft is tied to that `run_id`: if
+   the repository is analysed again before they apply, the CMP refuses the
+   old review and the draft is not applied. Propose again with the new
+   `run_id`.
 6. Follow the build with `get_import` (no `run_id`: the last run of each
    import) until the services are `running`. Then `get_topology` shows them.
 
@@ -45,9 +48,12 @@ set as app secrets in the CMP (see `request_secret`).
 
 `link_apps` lets one app call another on a port (it opens the network path
 and gives the caller a host name, the target's name unless you pass `alias`).
-`unlink_apps` removes it. Both answer `needs_cmp_approval`: a project admin
-approves in the CMP, then call again with the same arguments and
-`confirmation_id`. An approval covers exactly the call shown.
+`unlink_apps` removes it. Only a project admin can ask for either, and both
+answer `needs_cmp_approval` with a link. The user who asked can approve it
+there themselves, and so can any other admin of the project. Either way it
+is approved in the CMP with a passkey, never from the conversation. Then
+call again with the same arguments and `confirmation_id`. An approval covers
+exactly the call shown.
 
 Use `get_topology` before: it shows declared links, traffic observed between
 apps and traffic the network policy denied (a denied edge often means a
