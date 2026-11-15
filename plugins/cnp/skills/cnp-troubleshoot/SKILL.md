@@ -20,8 +20,9 @@ Read first, change after, and say what you found before fixing.
    written in them.
 4. **Recent changes.** `list_releases`: did it start with a release? Read
    the commits of that version with `read_app_file` on the changed files.
-5. **Alerts and costs.** `list_alerts` says what watches the app;
-   `get_costs` shows a cost jump (a loop, a resize). A pod stuck after a fix
+5. **Alerts and costs.** `get_alerts` says what fires now,
+   `get_alert_rules` what watches the app; `get_costs` shows a cost jump
+   (a loop, a resize). A pod stuck after a fix
    in config: `app_power(action="restart")` once the user agrees.
 6. **Report.** Cause in one sentence, the evidence (a log line, a measured
    value), the fix you propose and its risk. Apply it only after the user

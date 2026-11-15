@@ -1,12 +1,18 @@
 ---
 name: cnp-run-app
-description: Operate a CNP app or project that already runs: restart or sleep it, change its replicas or resources, manage members, costs and budget, security findings, database backups and restores, alerts. Use when someone asks to scale, restart, pause, add a teammate, check or cut costs, deal with a vulnerability, back up or restore data, or tune an alert.
+description: Operate a CNP app or project that already runs: restart or sleep it, change its replicas or resources, manage members, costs and budget, security findings, database backups and restores, read alert rules. Use when someone asks to scale, restart, pause, add a teammate, check or cut costs, deal with a vulnerability, back up or restore data, or asks what alerts watch an app.
 ---
 
 # Run an app on CNP
 
 Read the current state before any change, say what you will change, then do
 it. Every write goes through the project's stake policy (`cnp-platform`).
+
+You act with the user's role on the project. Most changes below need a
+project admin (settings, staging, members, backups and restores, cost
+recommendations); the budget needs the owner. A tool refuses at once when the
+user lacks the role: tell them who can do it instead of asking for an
+approval.
 
 ## App
 
@@ -18,16 +24,22 @@ it. Every write goes through the project's stake policy (`cnp-platform`).
 `update_app_config` commits to the app's values file on main; the platform
 deploys it in a few minutes. It refuses the keys that have their own tool:
 `db` (backups, restores), `release` and `migrations` (release settings),
-`image` (releases), `database` and `security` (the CMP). Code changes go
-through `cnp-change-app`.
+`image` (releases), `database` and `security` (the CMP). It also refuses
+any value the platform manages (the app's identity, its Vault access,
+`secrets`, the ingress host...): only replicas, resources, autoscaling,
+service, probes, env and config map, pod labels and annotations, monitoring,
+log retention, and the ingress switch, its SSO and allowed groups can change. Code
+changes go through `cnp-change-app`.
 
 ## Project
 
 - Members: `list_members`, `project_member` add (admin, member or guest) or
   remove. Owners are named in the CMP only.
 - `delete_project` deletes an empty project: delete its apps first with
-  `delete_app`. Sandbox and demo only, after the user confirms. It can answer
-  "deleting": check with `whoami`.
+  `delete_app`. Sandbox and demo only, after the user confirms. When the CMP
+  asks for a passkey it answers `not_allowed_for_assistants`: give the user
+  the link, they delete it there. It can answer "deleting": check with
+  `whoami`.
 
 ## Costs
 
@@ -35,7 +47,8 @@ through `cnp-change-app`.
 recommendations with their monthly saving. Cloud costs come from the invoice,
 about a day late; today is provisional.
 
-- `set_budget`: monthly amount and alert thresholds in percent.
+- `set_budget`: monthly amount and alert thresholds in percent. Only the
+  project's owner may set it.
 - `cost_recommendation`: `apply` changes the app as recommended (a commit),
   `ignore` hides it, `notify` sends it to the project's admins. Apply only
   after the user agrees, and say the saving and the risk (a smaller app can
@@ -66,7 +79,8 @@ really not exploitable.
 
 ## Alerts
 
-`list_alerts` lists the alerts the project or app can have, whether each is
-on, and its thresholds. `update_alert` switches one on or off or changes its
-thresholds. Do not switch off an alert that is firing to make it quiet:
-find the cause (`cnp-troubleshoot`).
+`get_alert_rules` lists the alert rules the project or app can have, whether
+each is on, and its thresholds. `get_alerts` says what fires now. Changing a
+rule, switching it off or muting it is done by the user in the CMP, never by
+an assistant: if an alert is noisy, find the cause (`cnp-troubleshoot`) and
+tell the user which rule to change.
