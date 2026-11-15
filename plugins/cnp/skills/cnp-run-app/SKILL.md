@@ -1,6 +1,6 @@
 ---
 name: cnp-run-app
-description: Operate a CNP app or project that already runs: restart or sleep it, change its replicas or resources, manage members, costs and budget, security findings, database backups and restores, read alert rules. Use when someone asks to scale, restart, pause, add a teammate, check or cut costs, deal with a vulnerability, back up or restore data, or asks what alerts watch an app.
+description: "Operate a CNP app or project that already runs: restart or sleep it, change its replicas or resources, manage members, costs and budget, security findings, database backups and restores, read alert rules. Use when someone asks to scale, restart, pause, add a teammate, check or cut costs, deal with a vulnerability, back up or restore data, or asks what alerts watch an app."
 ---
 
 # Run an app on CNP
