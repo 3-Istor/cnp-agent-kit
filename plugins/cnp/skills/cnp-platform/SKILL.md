@@ -34,6 +34,7 @@ with the `cnp` MCP tools. You act with the signed-in user's rights, never more.
 | Something is broken or slow | `cnp-troubleshoot` |
 | Run an app or project: restart, scale, members, costs, security, backups, alerts | `cnp-run-app` |
 | Import an existing repository, link apps, read the project map | `cnp-import` |
+| Act on a recommendation: move to managed Postgres or a bucket | `cnp-migrate-to-provider` |
 
 ## Rules (always)
 
