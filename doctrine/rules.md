@@ -43,7 +43,7 @@ Check: Image Updater only follows semver tags.
 
 ### CNP-08 · Logs on stdout
 **SHOULD** log to stdout, one line per event, JSON when possible.
-Why: Loki collects stdout; files in the container are lost.
+Why: Fluent Bit collects stdout into VictoriaLogs; files in the container are lost.
 Check: review.
 
 ### CNP-09 · Stateless pods
