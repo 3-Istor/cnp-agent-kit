@@ -67,3 +67,21 @@ Check: template.
 project.
 Why: nobody owns its retention or access.
 Check: guide cnp-new-app, review.
+
+### CNP-13 · AI through the gateway only
+**NEVER** put a model provider key (Anthropic or other) in an app, a values
+file or a secret: an app gets model access with `ai: {enabled: true}`, an agent
+is declared as an app of type `agent`.
+Why: the AI gateway holds the only key and applies the project's rights,
+budgets, kill switch and traces; a key in an app bypasses all of them.
+Check: Kyverno refuses `sk-ant-` values outside the gateway and any model
+endpoint other than the gateway; guide cnp-ai.
+
+### CNP-14 · Rule of Two for agents
+**MUST NOT** give one agent untrusted content, private data and a way out
+(a tool that writes or sends outside) at the same time: split it into a reader
+and an actor.
+Why: a prompt injection in the untrusted content would otherwise read the
+private data and send it out.
+Check: the CMP agent wizard refuses the declaration; app-templates CI checks
+the templates.
